@@ -19,7 +19,7 @@
         "league/flysystem": "^1.0",
         "guzzlehttp/guzzle": "^7.3",
         "vlucas/phpdotenv": "^5.4",
-        "tightenco/collect": "^8.83"
+        "tightenco/collect": "^7.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^7",
