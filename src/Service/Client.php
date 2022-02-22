@@ -111,10 +111,12 @@ class Client
     {
         switch ($e->getCode()) {
             case 400:
+            case 422:
                 $return = json_decode($e->getResponse()->getBody());
                 $this->response->code = (int) $e->getCode();
-                $this->response->errorCode = (int) $return->errors->errorCode;
-                $this->response->messages = [$return->errors->error->message];
+                $this->response->errorCode = (int) $return->codigo;
+                $this->response->messages = $return->mensagem;
+                $this->response->errors = $return->campos;
 
                 return $this->response;
                 break;
@@ -146,15 +148,6 @@ class Client
             case 405:
                 $this->response->code = (int) $e->getCode();
                 $this->response->messages = ['Erro: 405'];
-                unset($this->response->errorCode);
-
-                return $this->response;
-                break;
-            case 422:
-                $return = json_decode($e->getResponse()->getBody());
-
-                $this->response->code = (int) $e->getCode();
-                $this->response->messages = get_object_vars($return->errors);
                 unset($this->response->errorCode);
 
                 return $this->response;

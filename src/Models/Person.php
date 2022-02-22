@@ -11,6 +11,11 @@ class Person
     /**
      *@var string diretorio onde se encontra os certificados
      */
+    public $nome_fantasia;
+
+    /**
+     *@var string diretorio onde se encontra os certificados
+     */
     public $tipo_pessoa;
 
     public function __construct()

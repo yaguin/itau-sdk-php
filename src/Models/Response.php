@@ -15,7 +15,12 @@ class Response extends DefaultModel
     public $errorCode;
 
     /**
-     *@var array messages
+     *@var string messages
      */
     public $messages;
+
+    /**
+     *@var array messages
+     */
+    public $errors;
 }

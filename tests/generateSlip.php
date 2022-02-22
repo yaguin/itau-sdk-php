@@ -21,8 +21,13 @@ try {
 
     //Set Paid
     $parameter->dado_boleto->pagador->pessoa->nome_pessoa = "João Pereira da Silva";
-    $parameter->dado_boleto->pagador->pessoa->tipo_pessoa->codigo_tipo_pessoa = "F";
-    $parameter->dado_boleto->pagador->pessoa->tipo_pessoa->numero_cadastro_pessoa_fisica = "00000000000";
+    $parameter->dado_boleto->pagador->pessoa->tipo_pessoa->codigo_tipo_pessoa = 1 == 1 ? 'F' : "J";
+    if (1 == 1) {
+        $parameter->dado_boleto->pagador->pessoa->tipo_pessoa->numero_cadastro_pessoa_fisica = "00000000000";
+    } else {
+        $parameter->dado_boleto->pagador->pessoa->nome_fantasia = 'teste';
+        $parameter->dado_boleto->pagador->pessoa->tipo_pessoa->numero_cadastro_nacional_pessoa_juridica = "00000000000";
+    }
 
     $parameter->dado_boleto->pagador->endereco->nome_logradouro = "Rua X, 1548";
     $parameter->dado_boleto->pagador->endereco->nome_bairro = "Bairro Teste";
