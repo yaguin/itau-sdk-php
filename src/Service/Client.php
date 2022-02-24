@@ -94,7 +94,7 @@ class Client
         return $data;
     }
 
-    private function handleApiReturn($response): object
+    private function handleApiReturn($response)
     {
         $return = null;
         $successCode = [200, 201, 204];
