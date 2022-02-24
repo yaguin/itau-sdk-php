@@ -51,7 +51,7 @@ class Client
 
             $options['json'] = null;
             if ($data) {
-                $options['json']['data'] = $this->normalize($data);
+                $options['json'] = $this->normalize($data);
             }
 
             return $this->handleApiReturn(
