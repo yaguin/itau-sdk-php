@@ -25,7 +25,7 @@ class Client
      */
     private $settings;
 
-    public function __construct(Settings $settings, string $method, string $endPoint)
+    public function __construct(Settings $settings)
     {
         $this->settings = $settings;
 
@@ -33,13 +33,11 @@ class Client
             $this->url = 'https://api.itau.com.br/sandbox/cash_management/v2/';
         }
 
-        $this->method = $method;
-        $this->endPoint = $endPoint;
         $this->response = new Response();
         $this->client = new GuzzleClient();
     }
 
-    public function call($token, $data = null)
+    public function call(string $method, string $endPoint, $token, $data = null)
     {
         try {
             $options['headers'] = [
@@ -57,7 +55,7 @@ class Client
             }
 
             return $this->handleApiReturn(
-                $this->client->request($this->method, $this->url . $this->endPoint, $options)
+                $this->client->request($method, $this->url . $endPoint, $options)
             );
         } catch (\Exception $e) {
             return $this->handleApiError($e);
@@ -146,9 +144,10 @@ class Client
                 return $this->response;
                 break;
             case 405:
-                $this->response->code = (int) $e->getCode();
-                $this->response->messages = ['Erro: 405'];
-                unset($this->response->errorCode);
+                $return = json_decode($e->getResponse()->getBody());
+                $this->response->code = 405;
+                $this->response->messages = 'Erro: 405';
+                $this->response->errors = $return->details->msgId;
 
                 return $this->response;
                 break;
