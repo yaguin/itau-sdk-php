@@ -14,7 +14,7 @@ class Api extends Client
     {
         $class = new \stdClass();
         $class->data = $data;
-        return $this->call('POST', 'boletos', $token, $data);
+        return $this->call('POST', 'boletos', $token, $class);
     }
 
     public function callPatchMethods($slipId, $endPoint, $token, $data)
