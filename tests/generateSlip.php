@@ -50,6 +50,8 @@ $parameter->dado_boleto->lista_mensagem_cobranca = [];
 $parameter->dado_boleto->lista_mensagem_cobranca[0]->mensagem = "Pagavel em qualquer correspondente bancario";
 $parameter->dado_boleto->desconto_expresso = false;
 
+$parameter->dado_boleto->protesto->protesto = 4; // não protestar
+
 $api = new \Itau\Service\Api($settings);
 $token = $api->getToken();
 $api->registerSlipBank($token, $parameter);

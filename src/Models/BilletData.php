@@ -72,6 +72,11 @@ class BilletData
      */
     public $lista_mensagem_cobranca;
 
+    /**
+     *@var string diretorio onde se encontra os certificados
+     */
+    public $protesto;
+
     public function __construct()
     {
         $this->pagador = new Payer();
@@ -79,5 +84,6 @@ class BilletData
         $this->juros = new Fees();
         $this->recebimento_divergente = new DivergentReceipt();
         $this->lista_mensagem_cobranca = new BillingMessageList();
+        $this->protesto = new Protest();
     }
 }
