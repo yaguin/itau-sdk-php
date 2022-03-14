@@ -6,6 +6,11 @@ class IndividualBilletData
     /**
      *@var string diretorio onde se encontra os certificados
      */
+    public $texto_seu_numero;
+
+    /**
+     *@var string diretorio onde se encontra os certificados
+     */
     public $numero_nosso_numero;
 
     /**
