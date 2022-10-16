@@ -19,7 +19,7 @@ class Client
     private $client;
     private $apiContext;
     private $response;
-    private $url = 'https://api.itau.com.br/cash_management/v2/';
+    protected $url = 'https://api.itau.com.br/cash_management/v2/';
     /**
      * @var Settings
      */
@@ -53,7 +53,7 @@ class Client
             if ($data) {
                 $options['json'] = $this->normalize($data);
             }
-
+            dump($method, $this->url . $endPoint, $options);
             return $this->handleApiReturn(
                 $this->client->request($method, $this->url . $endPoint, $options)
             );
@@ -107,6 +107,8 @@ class Client
 
     private function handleApiError(Exception $e): object
     {
+        $return = json_decode($e->getResponse()->getBody());
+        dd($return);
         switch ($e->getCode()) {
             case 400:
             case 422:

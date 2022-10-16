@@ -3,14 +3,9 @@
 class Data
 {
     /**
-     *@var string diretorio onde se encontra os certificados
+     *@var string Simulação de Emissão - 'simulacao’ e Emissão - 'efetivacao'
      */
     public $etapa_processo_boleto;
-
-    /**
-     *@var string nome do arquivo certificado .PFX
-     */
-    public $codigo_canal_operacao;
 
     /**
      * Certificate.

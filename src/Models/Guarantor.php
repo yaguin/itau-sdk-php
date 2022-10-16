@@ -1,14 +1,14 @@
 <?php namespace Itau\Models;
 
-class Payer
+class Guarantor
 {
     /**
-     *@var Person
+     * @var Person
      */
     public $pessoa;
 
     /**
-     *@var Address
+     * @var Address
      */
     public $endereco;
 

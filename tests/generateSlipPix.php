@@ -49,8 +49,8 @@ $parameter = $factory->build([
             'quantity_days' => ''
         ]
     ]
-], 1);
+], 2);
 
 $api = new \Itau\Service\Api($settings);
 $token = $api->getToken();
-$api->registerSlipBank($token, $parameter);
+$api->registerSlipPix($token, $parameter);

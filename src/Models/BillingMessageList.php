@@ -2,9 +2,8 @@
 
 class BillingMessageList
 {
-
     /**
-     *@var string diretorio onde se encontra os certificados
+     * @var string
      */
     public $mensagem;
 }
