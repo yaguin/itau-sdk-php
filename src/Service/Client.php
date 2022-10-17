@@ -53,7 +53,7 @@ class Client
             if ($data) {
                 $options['json'] = $this->normalize($data);
             }
-            dump($method, $this->url . $endPoint, $options);
+
             return $this->handleApiReturn(
                 $this->client->request($method, $this->url . $endPoint, $options)
             );
