@@ -20,8 +20,8 @@ class DataSlipPix extends Data
         $this->etapa_processo_boleto = $data['process_step'];
         $this->beneficiario->id_beneficiario = $data['recipient'];
 
-        $this->dado_boleto->build($data['billetData']);
-        $this->dado_boleto->data_emissao = $data['billetData']['emission_date'];
+        $this->dado_boleto->build($data['data']);
+        $this->dado_boleto->data_emissao = $data['data']['emission_date'];
         
         $this->dados_qrcode->build($data['pix']);
         

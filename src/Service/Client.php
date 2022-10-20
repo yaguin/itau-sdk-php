@@ -19,22 +19,19 @@ class Client
     private $client;
     private $apiContext;
     private $response;
-    protected $url = 'https://api.itau.com.br/cash_management/v2/';
+    protected $url;
     /**
      * @var Settings
      */
     private $settings;
 
-    public function __construct(Settings $settings)
+    public function __construct(Settings $settings, $type = 1)
     {
         $this->settings = $settings;
-
-        if ($this->settings->sandBox) {
-            $this->url = 'https://api.itau.com.br/sandbox/cash_management/v2/';
-        }
-
         $this->response = new Response();
         $this->client = new GuzzleClient();
+
+        $this->setUrl($type);
     }
 
     public function call(string $method, string $endPoint, $token, $data = null)
@@ -74,10 +71,25 @@ class Client
             })
             ->flatMap(function ($item, $key) {
                 return is_numeric($key)
-                ? [self::arrayRemoveNull($item)]
-                : [$key => self::arrayRemoveNull($item)];
+                    ? [self::arrayRemoveNull($item)]
+                    : [$key => self::arrayRemoveNull($item)];
             })
             ->toArray();
+    }
+
+    private function setUrl($type)
+    {
+        switch ($type) {
+            case 1:
+                $this->url = 'https://api.itau.com.br/cash_management/v2/';
+                break;
+            case 2:
+                $this->url = 'https://secure.api.itau/pix_recebimentos_conciliacoes/v2/';
+                break;
+            case 3:
+                $this->url = 'https://secure.api.itau/pix_recebimentos/v2/';
+                break;
+        }
     }
 
     private function normalize(object $data): array
@@ -107,8 +119,6 @@ class Client
 
     private function handleApiError(Exception $e): object
     {
-        $return = json_decode($e->getResponse()->getBody());
-        dd($return);
         switch ($e->getCode()) {
             case 400:
             case 422:

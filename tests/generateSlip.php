@@ -1,12 +1,10 @@
 <?php include 'systemSettings.php';
 
-use Itau\Models\DataSlip;
-
-$factory = new \Itau\Service\Factory();
+$factory = new \Itau\Service\Factory($settings, 1);
 $parameter = $factory->build([
     'process_step' => 'simulacao',
     'recipient' => $_ENV['BENEFICIARIO'],
-    'billetData' => [
+    'data' => [
         'type' => 'a vista',
         'wallet' => '109',
         'species' => '01',
@@ -49,8 +47,4 @@ $parameter = $factory->build([
             'quantity_days' => ''
         ]
     ]
-], 1);
-
-$api = new \Itau\Service\Api($settings);
-$token = $api->getToken();
-$api->registerSlipBank($token, $parameter);
+]);
