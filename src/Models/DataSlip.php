@@ -13,13 +13,15 @@ class DataSlip extends Data
         $this->etapa_processo_boleto = $data['process_step'];
         $this->beneficiario->id_beneficiario = $data['recipient'];
 
-        $this->dado_boleto->build($data['billetData']);
+        $this->dado_boleto->build($data['data']);
         $this->dado_boleto->descricao_instrumento_cobranca = "boleto";
         $this->dado_boleto->forma_envio = "impressao";
-        $this->dado_boleto->codigo_tipo_vencimento = $data['billetData']['expiration_type'];
-        $this->dado_boleto->desconto_expresso = $data['billetData']['express_discount'];
-        $this->dado_boleto->texto_seu_numero = $data['billetData']['text_your_number'];
-        
-        return $this;
+        $this->dado_boleto->codigo_tipo_vencimento = $data['data']['expiration_type'];
+        $this->dado_boleto->desconto_expresso = $data['data']['express_discount'];
+        $this->dado_boleto->texto_seu_numero = $data['data']['text_your_number'];
+
+        $class = new \stdClass();
+        $class->data = $this;
+        return $class;
     }
 }
